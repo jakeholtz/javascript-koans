@@ -44,9 +44,9 @@ describe("About inheritance", function() {
 
 // http://javascript.crockford.com/prototypal.html
 Object.prototype.beget = function () {
-  function F() {}
-  F.prototype = this;
-  return new F();
+  function F() {} // creates F as blank new function
+  F.prototype = this; // makes F as a prototype of Object
+  return new F(); // returns new formula. So beget makes a blank function as a type of Object
 }
 
 function Gonzo(age, hobby, trick) {
@@ -71,19 +71,19 @@ describe("About Crockford's inheritance improvement", function() {
   });
   
   it("should be able to call a method on the derived object", function() {
-    expect(this.gonzo.doTrick()).toEqual(FILL_ME_IN);
+    expect(this.gonzo.doTrick()).toEqual("eat a tire");
   });
   
   it("should be able to call a method on the base object", function() {
-    expect(this.gonzo.answerNanny()).toEqual(FILL_ME_IN);
+    expect(this.gonzo.answerNanny()).toEqual("Everything's cool!");
   });
   
   it("should set constructor parameters on the base object", function() {
-    expect(this.gonzo.age).toEqual(FILL_ME_IN);
-    expect(this.gonzo.hobby).toEqual(FILL_ME_IN);
+    expect(this.gonzo.age).toEqual(3);
+    expect(this.gonzo.hobby).toEqual("daredevil performer");
   });
   
   it("should set constructor parameters on the derived object", function() {
-    expect(this.gonzo.trick).toEqual(FILL_ME_IN);
+    expect(this.gonzo.trick).toEqual("eat a tire");
   });
 });
