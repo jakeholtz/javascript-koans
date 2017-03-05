@@ -19,7 +19,7 @@ describe("About Applying What We Have Learnt", function() {
     var i,j,hasMushrooms, productsICanEat = [];
 
     for (i = 0; i < products.length; i+=1) {
-        if (products[i].containsNuts === false) {
+        if (products[i].containsNuts === false) { // filtering out the nut containing products
             hasMushrooms = false;
             for (j = 0; j < products[i].ingredients.length; j+=1) {
                if (products[i].ingredients[j] === "mushrooms") {
@@ -30,15 +30,19 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(productsICanEat.length).toBe(FILL_ME_IN);
+    expect(productsICanEat.length).toBe(1);
   });
 
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
       var productsICanEat = [];
 
       /* solve using filter() & all() / any() */
+     productsICanEat = _(products).filter( function(item) {
+       return (!item.containsNuts && _(item.ingredients).all( function(oneIngred) {
+         return oneIngred !== "mushrooms"}));
+      });
 
-      expect(productsICanEat.length).toBe(FILL_ME_IN);
+      expect(productsICanEat.length).toBe(1);
   });
 
   /*********************************************************************************/
